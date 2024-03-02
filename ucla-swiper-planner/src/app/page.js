@@ -7,6 +7,7 @@ import styles from './ui/Home.module.css'; // Make sure to have this CSS file fo
 import Navbar from './ui/Navbar';
 import Menu from './ui/Menu';
 
+
 // Mock data, assuming you would replace this with real data fetched from the backend
 const mockTotalSwipesUsed = 120;
 const mockWeeklySwipesUsed = 15;
@@ -33,7 +34,7 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <main className={styles.main}>
-              <Navbar />
+              {/* <Navbar /> */}
                 <h1 className={styles.title}>Welcome to UCLA Swipe Planner!</h1>
                 <div className={styles.swipeTracker}>
                     <h2>Swipe Tracker</h2>

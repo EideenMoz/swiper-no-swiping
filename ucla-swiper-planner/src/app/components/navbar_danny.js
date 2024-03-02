@@ -1,4 +1,6 @@
 // components/Navbar.js
+// WE CAN PROBABLY DELETE THIS ONCE NAV BAR IS COMPLETELY WORKING 
+
 import React from 'react';
 import Link from 'next/link';
 

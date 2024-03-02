@@ -1,25 +1,52 @@
-// components/Navbar.js
 import Link from 'next/link';
-import styles from './Navbar.module.css'; // Assuming you have this CSS file for styling
 
 const Navbar = () => {
+  const navbarStyle = {
+    backgroundColor: 'var(--ucla-blue)',
+    padding: 'var(--spacing-medium)',
+  };
+
+  const navListStyle = {
+    listStyle: 'none',
+    display: 'flex',
+    justifyContent: 'center',
+  };
+
+  const navItemStyle = {
+    margin: '0 var(--spacing-small)',
+  };
+
+  const navLinkStyle = {
+    color: 'var(--white)',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+  };
+
+  const navLinkHoverStyle = {
+    textDecoration: 'underline',
+  };
+
   return (
-    <nav className={styles.navbar}>
-      <ul className={styles.navList}>
-        <li className={styles.navItem}>
-          {/* Use Link with legacyBehavior prop */}
+    <nav style={navbarStyle}>
+      <ul style={navListStyle}>
+        <li style={navItemStyle}>
           <Link href="/" legacyBehavior>
-            <a className={styles.navLink}>Home</a>
+            <a style={navLinkStyle}>Home</a>
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link href="/about" legacyBehavior>
-            <a className={styles.navLink}>Profile</a>
+        <li style={navItemStyle}>
+          <Link href="/components/Profile" legacyBehavior>
+            <a style={navLinkStyle}>Profile</a>
           </Link>
         </li>
-        <li className={styles.navItem}>
-          <Link href="/contact" legacyBehavior>
-            <a className={styles.navLink}>Calendar</a>
+        <li style={navItemStyle}>
+          <Link href="/components/Calendar" legacyBehavior>
+            <a style={navLinkStyle}>Calendar</a>
+          </Link>
+        </li>
+        <li style={navItemStyle}>
+          <Link href="/components/FullMenu" legacyBehavior>
+            <a style={navLinkStyle}>Full Menu</a>
           </Link>
         </li>
       </ul>
