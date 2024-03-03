@@ -32,6 +32,7 @@ export default function Home() {
     const onTrack = (totalSwipesUsed / totalSwipesAvailable) <= (1 / totalWeeks);
 
     return (
+
         <div className={styles.container}>
             <main className={styles.main}>
               {/* <Navbar /> */}

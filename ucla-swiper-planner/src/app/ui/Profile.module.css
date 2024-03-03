@@ -1,0 +1,80 @@
+/* src/app/ui/Profile.module.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .standings {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .standingsItem {
+    text-align: center;
+  }
+  
+  .arrow {
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .selected {
+    background-color: #536895; 
+    color: #fff; 
+  }
+
+  .podium {
+    display: flex;
+    align-items: flex-end; /* Align podium bottoms */
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .podiumBlock {
+    width: 100px;
+    text-align: center;
+    color: white;
+  }
+  
+  .podiumBlock1 {
+    height: 120px; 
+    background-color: #3498db; /* Color for B-Plate */
+    order: 2; /* Place first place in the middle */
+  }
+  
+  .podiumBlock2 {
+    height: 80px; 
+    background-color: #e74c3c; /* Color for Epicuria */
+    order: 1; /* Place second place to the left */
+  }
+  
+  .podiumBlock3 {
+    height: 60px; 
+    background-color: #2ecc71; /* Color for De Neve */
+    order: 3; /* Place third place to the right */
+  }
