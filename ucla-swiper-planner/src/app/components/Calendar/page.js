@@ -3,7 +3,7 @@
 // To inform Next.js that this is a client component
 'use client'
 import React, { useState } from 'react';
-import WheelComponent from "react-wheel-of-prizes";
+import WheelComponent from "./react-wheel-of-prizes";
 import "./wheel.css";
 import "../../ui/globals.css";
 
