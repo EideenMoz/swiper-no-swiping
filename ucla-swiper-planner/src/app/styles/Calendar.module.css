@@ -1,0 +1,25 @@
+.Calendar td{
+    padding: 7px;
+    vertical-align: top;
+    justify-content: center;
+    text-align: center; /* Center the content horizontally */
+    border: 1px solid #ddd;
+  } 
+
+  .CalendarTop td{
+    padding: 0px;
+    vertical-align: top;
+    justify-content: center;
+    text-align: center; /* Center the content horizontally */
+    border: 1px solid #ddd;
+  } 
+
+  .Button {
+    margin: 3px;
+    padding: 10px 15px; /* Top and bottom padding is 10 pixels, left and right padding is 15 pixels */
+  } 
+
+  .Padding{
+    padding: 15px 15px;
+  }
+ 
