@@ -1,26 +1,60 @@
 'use client'
-import React, { useEffect } from 'react';
-import moment from './moment';
+import React, { useState, useEffect } from 'react';
+
 
 const WeekDatesDisplay = () => {
-    // Get the current date
-    const currentDate = moment();
-  
-    // Calculate the start and end of the week
-    const startOfWeek = currentDate.clone().startOf('week');
-    const endOfWeek = currentDate.clone().endOf('week');
-  
-    // Format the dates in the desired format
-    const monday = startOfWeek.add(1, 'days');
-    const sunday = endOfWeek.add(1, 'days');
-    const formattedStartDate = monday.format('MMMM D Y');
-    const formattedEndDate = sunday.format('MMMM D Y');
 
-    return (
-      <div>
-        <h2>{`${formattedStartDate} - ${formattedEndDate}`}</h2>
-      </div>
-    );
-  };
-  
-  export default WeekDatesDisplay;
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [startOfWeek, setStartOfWeek] = useState(getStartOfWeek(currentDate));
+  const [endOfWeek, setEndOfWeek] = useState(getEndOfWeek(currentDate));
+
+  useEffect(() => {
+    const updateDates = () => {
+      const now = new Date();
+      setStartOfWeek(getStartOfWeek(now));
+      setEndOfWeek(getEndOfWeek(now));
+    };
+
+    const intervalId = setInterval(updateDates, 1000);
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  function getStartOfWeek(date) {
+    const currentDay = date.getDay();
+    const diff = currentDay === 0 ? 6 : currentDay - 1; // Adjust for Sunday
+    const startOfWeek = new Date(date);
+    startOfWeek.setDate(date.getDate() - diff);
+    return startOfWeek;
+  }
+
+  function getEndOfWeek(date) {
+    const currentDay = date.getDay();
+    const diff = currentDay === 0 ? 0 : 7 - currentDay; // Adjust for Sunday
+    const endOfWeek = new Date(date);
+    endOfWeek.setDate(date.getDate() + diff);
+    return endOfWeek;
+  }
+
+  //format strings to be displayed
+  const startOfWeekFormatted = startOfWeek.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const endOfWeekFormatted = endOfWeek.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return (
+    <div>
+      <h2>{startOfWeekFormatted} - {endOfWeekFormatted}</h2>
+    </div>
+  );
+};
+
+export default WeekDatesDisplay;

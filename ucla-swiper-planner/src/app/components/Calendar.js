@@ -23,7 +23,7 @@ const Calendar = () => {
 
 //Uses tableData to create a map of all the options
 //Need to update with all the options after
-    const createOptionMap = (tableData) => {
+    const createOptionMap = (tableData) => {  
       let dict = {
         deneve: 0,
         bplate: 0,
@@ -83,7 +83,7 @@ const Calendar = () => {
       
     };
 
-  //firebase.update(newData[index])
+  //Adds entry to Table
     const handleAddItem = (index) => {
       setTableData((prevData) => {
         const newData = [...prevData];
@@ -93,6 +93,7 @@ const Calendar = () => {
       });
     };
 
+    //Clears Table data
     const handleClearEntries = (index) => {
       setTableData((prevData) => {
         const newData = [...prevData];
@@ -101,6 +102,7 @@ const Calendar = () => {
       });
     };
   
+    //Sets table data based on selections in drop down menus
     const handleChange = (index, itemIndex, property, value) => {
       setTableData((prevData) => {
         const newData = [...prevData];
@@ -118,6 +120,20 @@ const Calendar = () => {
       { value: 'Dinner', label: 'Dinner' },
       { value: 'Late-night', label: 'Late-Night' },
     ];
+
+    const nameOptions = [
+      { value: 'De Neve ', label: 'De Neve' },
+      { value: 'Bplate ', label: 'Bplate' },
+      { value: 'Epicuria ', label: 'Epicuria' },
+      { value: 'Feast ', label: 'Feast' },
+      { value: 'The Study ', label: 'The Study' },
+      { value: 'Rende West ', label: 'Rende West' },
+      { value: 'Rende East ', label: 'Rende East' },
+      { value: 'BCafe ', label: 'BCafe' },
+      { value: 'Campus ', label: 'Campus' },
+      { value: 'Food Truck ', label: 'Food Truck' },
+    ];
+    
   
     return (
       <div className ={styles.Calendar} >
@@ -135,22 +151,21 @@ const Calendar = () => {
               {tableData.map((items, index) => (
                 <td key={index}>
                   <div className={styles.Padding}>
+
+                    {/* Dropdown for names */}
                     <select
                       value={items[items.length - 1]?.name || ''}
                       onChange={(e) => handleChange(index, items.length - 1, 'name', e.target.value)}
                     >
                       <option value="" disabled>Select Name</option>
-                      <option value="De Neve ">De Neve</option>
-                      <option value="Bplate ">Bplate</option>
-                      <option value="Epicuria ">Epicuria</option>
-                      <option value="Feast ">Feast</option>
-                      <option value="The Study ">The Study</option>
-                      <option value="Rende West ">Rende West</option>
-                      <option value="Rende East ">Rende East</option>
-                      <option value="BCafe ">BCafe</option>
-                      <option value="Campus ">Campus</option>
-                      <option value="Food Truck ">Food Truck</option>
+                      {nameOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
                     </select>
+                    
+                    {/* Dropdown for Period */}
                     <select
                       value={items[items.length - 1]?.period || ''}
                       onChange={(e) => handleChange(index, items.length - 1, 'period', e.target.value)}
@@ -163,6 +178,7 @@ const Calendar = () => {
                       ))}
                     </select>
 
+                    {/* Buttons for Add and Clear*/}  
                     <button className={styles.Button} onClick={() => handleAddItem(index)}>Add Item</button>
                     <button className={styles.Button} onClick={() => handleClearEntries(index)}>Clear Entries</button>
 
