@@ -8,7 +8,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function SignOut() {
 
-    const app = initFirebase()
     const auth= getAuth();
     const router = useRouter();
     const [user, loading] = useAuthState(auth);
@@ -17,7 +16,7 @@ export default function SignOut() {
     }
 
     if (!user){
-        router.push("/SignIn")
+        router.push("/")
         return <div>Currently Loading D:</div>;
     }  
 

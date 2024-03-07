@@ -25,19 +25,23 @@ function SignIn() {
         return <div>Currently Loading D:</div>;
     }
 
-    if (user){
-        router.push("/")
-        return <div>Currently Loading D:</div>;
-    }  
+    // if (!user){
+    //     router.push("/")
+    //     return <div>Currently Loading D:</div>;
+    // }  
+
+    if (user) {
+        router.push("/Home")
+    }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="bg-gray-800 p-8 rounded-md shadow-lg w-96">
-        <h2 className="text-2xl font-semibold text-white mb-6">Sign Up</h2>
+        <h2 className="text-2xl font-semibold text-white mb-6">Sign In</h2>
           <button onClick={signIn}
             className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 transition-colors"
           >
-            Sign Up With Google
+            Sign In With Google
           </button>
       </div>
     </div>
