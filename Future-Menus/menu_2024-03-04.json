@@ -1,0 +1,90 @@
+{
+    "Breakfast": {
+        "Epicuria": [],
+        "De Neve": [
+            "The Front Burner Pancakes",
+            "The Breakfast Hash Brown",
+            "Kielbasa",
+            "Scrambled Eggs",
+            "The Pizzeria Belgian Waffle",
+            "The Egg Benedict Sandwich"
+        ],
+        "Bruin Plate": [
+            "Bruin Scramble (ham & Cheddar)",
+            "Bruin Scramble (vegetarian)",
+            "Green Chile Rice W/ Black Beans & Egg",
+            "Scrambled Eggs",
+            "Vegan Scrambled Eggs",
+            "Four Grain Waffles",
+            "Ginger Pancake W/ Banana Walnut Topping"
+        ]
+    },
+    "Lunch": {
+        "Epicuria": [],
+        "De Neve": [
+            "Bar Lemon Garlic Chicken Thighs",
+            "The Baja Fried Fish Taco",
+            "Santa Cruz Spicy Lentil & Avocado Crema Tacos",
+            "The Pizzeria Chicken Ranch Pizza",
+            "Pepperoni Deluxe Pizza",
+            "The Socal Burger",
+            "High Carbon Footprint",
+            "Col. Karapet's Yardbird Cruncher"
+        ],
+        "Bruin Plate": [
+            "Black Quinoa",
+            " Bbq Tofu & Red Bean Bowl",
+            "Parsnip & Swiss Chard Whole Wheat Pasta",
+            "Fennel",
+            " Cucumber",
+            " & Chicken Salad W/ Pita Chips",
+            "Roasted Beet",
+            " Goat Cheese",
+            " & Arugula Stacker",
+            "Pear",
+            " Thyme",
+            " & Blue Cheese Pizza",
+            "Roasted Pork",
+            " Sorrel",
+            " & Goat Cheese Pizza",
+            "Bison Slider W/ Tomato Jam",
+            "High Carbon Footprint",
+            "Red Quinoa & Yam Stacker W/ Pineapple Salsa"
+        ]
+    },
+    "Dinner": {
+        "Epicuria": [
+            "Cheese Ravioli W/ Mushroom Sauce",
+            "Shrimp Alfredo Pizza",
+            "Chicken Parmesan Sandwich",
+            "Crusty Gruyere Cheese Sandwich",
+            "Cod W/ White Wine & Almonds",
+            "Cauliflower With Toum",
+            "Flank Steak W/ Harissa Dry Rub",
+            "High Carbon Footprint",
+            "Wild Mushroom Risotto"
+        ],
+        "De Neve": [
+            "Bar Lemon Garlic Chicken Thighs",
+            "The Santa Maria Rubbed Tri Tip",
+            "Santa Maria Rubbed Tofu",
+            "The Pizzeria Chicken Ranch Pizza",
+            "Pepperoni Deluxe Pizza",
+            "The Socal Burger",
+            "High Carbon Footprint",
+            "Col. Karapet's Yardbird Cruncher"
+        ],
+        "Bruin Plate": [
+            "Tofu",
+            " Black-eyed Peas",
+            " & Collard Greens Bowl",
+            "Whole Wheat Spaghetti W/ Wheatballs & Spinach Bowl",
+            "Roast Chicken W/ Almond Mojo",
+            "Lentil Lasagna",
+            "Bbq Tofu Flatbread",
+            "Soy Garlic Flank Steak",
+            "High Carbon Footprint",
+            "Portobello Mushroom"
+        ]
+    }
+}

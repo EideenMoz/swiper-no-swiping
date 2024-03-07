@@ -1,0 +1,87 @@
+{
+    "Breakfast": {
+        "Epicuria": [],
+        "De Neve": [
+            "The Breakfast Hash Brown",
+            "Pork Sausage",
+            "Scrambled Eggs",
+            "The Pizzeria Belgian Waffle",
+            "The Smoked Salmon Egg Benedict"
+        ],
+        "Bruin Plate": [
+            "Bruin Scramble (ham & Cheddar)",
+            "Bruin Scramble (vegetarian)",
+            "Chicken & Egg Breakfast Pita",
+            "Scrambled Eggs",
+            "Vegan Scrambled Eggs",
+            "Four Grain Waffles",
+            "Whole Wheat Crepe"
+        ]
+    },
+    "Lunch": {
+        "Epicuria": [],
+        "De Neve": [
+            "Bar Fresh Herb Marinated Chicken Thigh",
+            "The Front Burner New England Style Clambake",
+            "New England Style Tofu Bake",
+            "The Yankee Pot Roast",
+            "High Carbon Footprint",
+            "Cayenne Spiced Fried Cauliflower",
+            "The Pizzeria New Haven-style White Clam Pizza",
+            "Pepperoni Deluxe Pizza",
+            "The Chili Cheese Burger",
+            "High Carbon Footprint",
+            "Buffalo Bleu Chicken Sandwich"
+        ],
+        "Bruin Plate": [
+            "Shrimp",
+            " Quinoa",
+            " & Barley Jambalaya",
+            "Calypso Bean",
+            " Shell Pasta",
+            " & Arugula Saute",
+            "Beef",
+            " Beet",
+            " & Farro Salad Wrap",
+            "High Carbon Footprint",
+            "Pan-roasted Brussels Sprouts Quesadilla",
+            "Chicken",
+            " Dill",
+            " & Potato Flatbread",
+            "Rosemary",
+            " Gorgonzola",
+            " & Roasted Grape Flatbread",
+            "Dijon Chicken Thigh",
+            "Mushroom Walnut Stacker"
+        ]
+    },
+    "Dinner": {
+        "Epicuria": [],
+        "De Neve": [
+            "Bar Fresh Herb Marinated Chicken Thigh",
+            "The Front Burner Old Bay Shrimp W/ Pan Sauce And Cheddar Johnnycakes",
+            "Old Bay Vegan Chicken W/ Pan Sauce And Cheddar Johnnycakes",
+            "The Buffalo Chicken Wings",
+            "Vegan Chick'n Fingers",
+            "The Pizzeria New Haven-style White Clam Pizza",
+            "Pepperoni Deluxe Pizza",
+            "The Chili Cheese Burger",
+            "High Carbon Footprint",
+            "Buffalo Bleu Chicken Sandwich"
+        ],
+        "Bruin Plate": [
+            "Chipotle Chicken",
+            " Brown Rice",
+            " & Avocado Bowl",
+            "Potato",
+            " Kale",
+            " Brown Rice",
+            " & Red Bean Bowl",
+            "Toasted Rice Trout W/ Coconut Curried Lentils",
+            "Flageolet Bean Ragout",
+            "Classic Steakhouse Tri-tip",
+            "High Carbon Footprint",
+            "Roasted Plantains"
+        ]
+    }
+}

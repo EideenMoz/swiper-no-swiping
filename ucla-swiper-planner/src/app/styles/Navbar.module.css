@@ -1,0 +1,31 @@
+/* styles/Navbar.module.css */
+.navbar {
+    background-color: var(--ucla-blue);
+    padding: var(--spacing-medium);
+    font-size: 20px;
+  }
+  
+  .navList {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navItem {
+    margin: 0 var(--spacing-small);
+  }
+  
+  .navLink {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+  
+  .navLink:hover {
+    text-decoration: none;
+    color: var(--ucla-gold);
+  }
+
+
+  
