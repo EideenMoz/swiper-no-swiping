@@ -1,6 +1,6 @@
 'use client'
 
-import {initFirebase} from "../../../firebase/FirebaseApp"
+import app from '../../../firebase/FirebaseApp'; // Adjust the path as needed
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 import {useAuthState} from "react-firebase-hooks/auth"
 import {useRouter} from "next/navigation"
@@ -9,17 +9,21 @@ import {useRouter} from "next/navigation"
 
 function SignIn() {
 
-    const app = initFirebase()
-    const provider= new GoogleAuthProvider();
-    const auth = getAuth();
+    const auth = getAuth(app); // Pass the Firebase app instance
+    const provider = new GoogleAuthProvider();
     const  [user, loading] = useAuthState(auth);
     const router = useRouter();
 
-    const signIn= async () => {
-        const result = await signInWithPopup(auth, provider);
-        console.log(result.user);
-
-    }  
+    const signIn = async () => {
+        try {
+            const result = await signInWithPopup(auth, provider);
+            console.log(result.user);
+            // Redirect or additional logic here if needed
+        } catch (error) {
+            console.error("Sign-in error", error);
+            // Handle errors here, such as displaying a message to the user
+        }
+    }
 
     if (loading){
         return <div>Currently Loading D:</div>;
