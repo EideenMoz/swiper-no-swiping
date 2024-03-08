@@ -97,6 +97,40 @@ export async function fetchDataFromFirestore() {
     }
   }
   
+
+  export async function updateAllTimeSwipes(newCount) {
+    const user = auth.currentUser;
+    const userRef = doc(db, "Users", user.uid);
+  
+    try {
+        // Fetch the current user data
+        const userDoc = await getDoc(userRef);
+        const userData = userDoc.data();
+  
+        // Update the all-time swipes
+        const oldAllTimeSwipes = userData["All Time Swipes"] || {};
+        const updatedAllTimeSwipes = {};
+  
+        // Add the oldAllTime entries
+        for (const location in oldAllTimeSwipes) {
+            updatedAllTimeSwipes[location] = oldAllTimeSwipes[location];
+        }
+  
+        // Add the swipes for the current week
+        const currentWeekSwipes = await fetchWeeklySwipesForLocations();
+        for (const location in currentWeekSwipes) {
+            updatedAllTimeSwipes[location] = (updatedAllTimeSwipes[location] || 0) + currentWeekSwipes[location];
+        }
+  
+        // Update the document in Firestore
+        await setDoc(userRef, { "All Time Swipes": updatedAllTimeSwipes }, { merge: true });
+        console.log("All Time Swipes updated successfully");
+    } catch (error) {
+        console.error("Error updating All Time Swipes: ", error);
+    }
+}
+
+  /*
   export async function updateAllTimeSwipes(newCount) {
     const user = auth.currentUser;
     const userRef = doc(db, "Users", user.uid);
@@ -108,6 +142,7 @@ export async function fetchDataFromFirestore() {
       console.error("Error updating All Time Swipes: ", error);
     }
   }
+  */
   
   export async function updateWeeklySwipesForLocations(newCount) {
     const user = auth.currentUser;
@@ -120,4 +155,6 @@ export async function fetchDataFromFirestore() {
       console.error("Error updating Weekly Swipes for Locations: ", error);
     }
   }
+
+  
   
