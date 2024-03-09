@@ -27,6 +27,22 @@ const totalSwipesAvailable = mockData.totalWeeks * mockData.swipesPerWeek;
 const onTrack = (mockData.totalSwipesUsed / totalSwipesAvailable) <= (1 / mockData.totalWeeks);
 
 export default function Home() {
+    const swipeTrackerProps = {
+        totalSwipesUsed: mockData.totalSwipesUsed,
+        weeklySwipesUsed: mockData.weeklySwipesUsed,
+        // Add any other props required by the SwipeTracker component
+    };
+
+    const balanceInfoProps = {
+        totalSwipesUsed: mockData.totalSwipesUsed,
+        totalSwipesAvailable: totalSwipesAvailable,
+        currentWeek: mockData.currentWeek,
+        currentDay: mockData.currentDay,
+        swipesPerWeek: mockData.swipesPerWeek,
+        onTrack: onTrack,
+        // Add any other props required by the BalanceInfo component
+    };
+    
     // Here, you'd replace mockData with actual data fetched from your database
 
     return (
@@ -35,17 +51,14 @@ export default function Home() {
             <SignOut />
             <div className={styles.container}>
                 <main className={styles.main}>
-                    <h1 className={styles.title}>Welcome to UCLA Swipe Planner!</h1>
-                    <SwipeTracker totalSwipesUsed={mockData.totalSwipesUsed} weeklySwipesUsed={mockData.weeklySwipesUsed} />        
-                    <BalanceInfo 
-                        totalSwipesUsed={mockData.totalSwipesUsed} 
-                        totalSwipesAvailable={totalSwipesAvailable} 
-                        currentWeek={mockData.currentWeek} 
-                        currentDay={mockData.currentDay} 
-                        swipesPerWeek={mockData.swipesPerWeek} 
-                        onTrack={onTrack} 
-                    />
-                    <Menu />
+                    <div className={styles.headerContainer}>  {/* Wrap title in new container */}
+                        <h1 className={styles.title}>Welcome to UCLA Swipe Planner!</h1>
+                    </div>
+                    <div className={styles.sideBySide}>  {/* Group swipe tracker and balance info */}
+                        <SwipeTracker {...swipeTrackerProps} />        
+                        <BalanceInfo {...balanceInfoProps} />
+                    </div>
+                    <Menu />  {/* Menu below the side-by-side containers */}
                 </main>
             </div>
         </>
