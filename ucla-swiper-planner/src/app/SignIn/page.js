@@ -1,15 +1,14 @@
 'use client'
 
-import {initFirebase} from "../../../firebase/FirebaseApp"
+import app from "../../../firebase/FirebaseApp"
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 import {useAuthState} from "react-firebase-hooks/auth"
 import {useRouter} from "next/navigation"
 import { useEffect } from 'react'; // Import useEffect hook
 
 function SignIn() {
-    const app = initFirebase()
     const provider = new GoogleAuthProvider();
-    const auth = getAuth();
+    const auth = getAuth(app);
     const [user, loading] = useAuthState(auth);
     const router = useRouter();
 

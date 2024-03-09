@@ -5,7 +5,7 @@
 import React, { useState } from 'react';
 import styles from '../styles/Calendar.module.css'
 
-import { updateWeeklySwipesForLocations } from '../../../firebase/FirebaseUtils';
+import { updateWeeklySwipesForLocations, fetchWeeklySwipesForLocations } from '../../../firebase/FirebaseUtils';
 
 
 
@@ -21,6 +21,8 @@ const Calendar = () => {
 const UpdateWeeklySwipes = async (e) =>{
   const result = createOptionMap(tableData);
   updateWeeklySwipesForLocations(result);
+  const weeklySwipes=fetchWeeklySwipesForLocations();
+  console.log(weeklySwipes);
   }
 
 
