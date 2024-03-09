@@ -9,6 +9,9 @@ import {
   updateWeekEntries,
   fetchWeekEntries,
   updateWeeklySwipesForLocations,
+  fetchWeeklySwipesForLocations,
+  fetchWeeklySwipeSchedule,
+  updateWeeklySwipeSchedule
   
 } from '../../../firebase/FirebaseUtils';
 
@@ -59,8 +62,7 @@ const Calendar = () => {
 const UpdateWeeklySwipes = async (e) =>{
   const result = createOptionMap(tableData);
   const entryMap = createEntryMap(tableData); //Just to test
-  updateWeeklySwipesForLocations(result);
-  updateWeekEntries(entryMap);
+  updateWeeklySwipesForLocations(entryMap);
   }
 
 //Creates a map to change tableData into a map firebase can take
@@ -202,11 +204,11 @@ const UpdateWeeklySwipes = async (e) =>{
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const weekEntries = await fetchWeekEntries();
+          const weekEntries = await fetchWeeklySwipesForLocations();
           const updatedTableData = convertEntryMapToTableData(weekEntries);
           setTableData(updatedTableData);
         } catch (error) {
-          console.error('Error fetching "week Entries":', error);
+          console.error('Error fetching Current Weeks Location Swipes:', error);
         }
       };
   
