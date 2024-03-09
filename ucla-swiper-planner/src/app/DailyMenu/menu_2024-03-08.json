@@ -2,6 +2,7 @@
     "Breakfast": {
         "Epicuria": [],
         "De Neve": [
+            "The Front Burner Ham & Cheese Omelet",
             "The Breakfast Hash Brown",
             "Pork Sausage",
             "Scrambled Eggs",
@@ -9,7 +10,7 @@
             "The Smoked Salmon Egg Benedict"
         ],
         "Bruin Plate": [
-            "Bruin Scramble (ham & Cheddar)",
+            "Bruin Scramble W/ Flank Steak",
             "Bruin Scramble (vegetarian)",
             "Chicken & Egg Breakfast Pita",
             "Scrambled Eggs",
@@ -22,11 +23,10 @@
         "Epicuria": [],
         "De Neve": [
             "Bar Fresh Herb Marinated Chicken Thigh",
-            "The Front Burner New England Style Clambake",
-            "New England Style Tofu Bake",
-            "The Yankee Pot Roast",
-            "High Carbon Footprint",
-            "Cayenne Spiced Fried Cauliflower",
+            "Garlicky Green Beans",
+            "The Buffalo Chicken Wings",
+            "Chicken Tender",
+            "Vegan Chick'n Fingers",
             "The Pizzeria New Haven-style White Clam Pizza",
             "Pepperoni Deluxe Pizza",
             "The Chili Cheese Burger",
@@ -59,12 +59,13 @@
         "Epicuria": [],
         "De Neve": [
             "Bar Fresh Herb Marinated Chicken Thigh",
-            "The Front Burner Old Bay Shrimp W/ Pan Sauce And Cheddar Johnnycakes",
-            "Old Bay Vegan Chicken W/ Pan Sauce And Cheddar Johnnycakes",
-            "The Buffalo Chicken Wings",
-            "Vegan Chick'n Fingers",
+            "The Front Burner Philly Cheesesteak Sandwich",
+            "High Carbon Footprint",
+            "Vegetarian Philly Cheese Steak Sandwich",
+            "The New England Style Clambake",
+            "New England Style Tofu Bake",
             "The Pizzeria New Haven-style White Clam Pizza",
-            "Pepperoni Deluxe Pizza",
+            "Detroit-style Pepperoni Pizza",
             "The Chili Cheese Burger",
             "High Carbon Footprint",
             "Buffalo Bleu Chicken Sandwich"
@@ -79,8 +80,8 @@
             " & Red Bean Bowl",
             "Toasted Rice Trout W/ Coconut Curried Lentils",
             "Flageolet Bean Ragout",
-            "Classic Steakhouse Tri-tip",
-            "High Carbon Footprint",
+            "Lemongrass Flank Steak",
+            "Mashed Yams",
             "Roasted Plantains"
         ]
     }

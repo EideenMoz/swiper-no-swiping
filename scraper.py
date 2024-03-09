@@ -104,7 +104,7 @@ def write_menu_to_json(menu_data, date):
     formatted_date = date.strftime("%Y-%m-%d")
 
     # Create the directory if it doesn't exist
-    directory = "Future-Menus"
+    directory = "./ucla-swiper-planner/src/app/DailyMenu"
     if not os.path.exists(directory):
         os.makedirs(directory)
 

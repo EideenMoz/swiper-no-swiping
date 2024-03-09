@@ -32,6 +32,18 @@ const user = auth.currentUser;
 
 
 const Calendar = () => {
+
+  const [user, setUser] = useState(null); // Initialize user state
+  // Other states and variables remain the same
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser); // Update user state when auth state changes
+    });
+
+    return () => unsubscribe(); // Cleanup subscription
+  }, []);
+  
     const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   
     const defaultEntry = { name: '', period: '' };
@@ -197,19 +209,25 @@ const UpdateWeeklySwipes = async (e) =>{
       { value: 'Food Truck ', label: 'Food Truck' },
     ];
 
+    const [mounted, setMounted] = useState(false);
+    
     useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const weekEntries = await fetchWeeklySwipeSchedule();
-          const updatedTableData = convertEntryMapToTableData(weekEntries);
-          setTableData(updatedTableData);
-        } catch (error) {
-          console.error('Error fetching "week Entries":', error);
-        }
-      };
-  
-      fetchData(); // Call the fetchData function on component mount
-    }, []); 
+      if (user) { // Only proceed if the user object exists
+        const fetchData = async () => {
+          try {
+            const weekEntries = await fetchWeeklySwipeSchedule(); // Assuming fetchWeeklySwipeSchedule needs the user's UID
+            const updatedTableData = convertEntryMapToTableData(weekEntries);
+            setTableData(updatedTableData);
+          } catch (error) {
+            console.error('Error fetching "week Entries":', error);
+          }
+        };
+    
+        fetchData(); // Call the fetchData function if the user is authenticated
+      }
+    }, [user]); // Depend on `user` to re-run the effect when the user's sign-in state changes
+
+    // Rest of your component code...
 
     return (
       <div className ={styles.Calendar} >
@@ -268,7 +286,7 @@ const UpdateWeeklySwipes = async (e) =>{
           </tbody>
         </table>
         <div className ={styles.UpdateButton}> 
-          <button className={styles.UpdateButton} onClick={logDataStructure}>
+          <button className={styles.UpdateButton}  onClick={logDataStructure}>
         Send Update
       </button>
       </div>

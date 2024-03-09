@@ -6,9 +6,8 @@ import { getAuth } from "firebase/auth";
 
 const auth = getAuth(app);
 const usersRef = collection(db, "Users");
-
+const user = auth.currentUser;
 export async function fetchFireStoreData(){
-  const user = auth.currentUser;
   const q = query(usersRef, where("uid", "==", user.uid)); // Construct query using query() and where()
   const userData = [];
   try {
@@ -37,7 +36,7 @@ export async function fetchWeeklySwipesForLocations() {
   
 export async function fetchWeeklySwipeSchedule() {
   const userInfo = await fetchFireStoreData();
-  const swipes=userInfo[0]["week entries"]
+  const swipes=userInfo[0]["Weekly Swipe Count"]
   console.log(swipes);
   return userInfo;
 }
@@ -60,32 +59,14 @@ export async function updateWeeklySwipeCount(newCount) {
 export async function updateAllTimeSwipes(newCount) {
   const user = auth.currentUser;
   const userRef = doc(db, "Users", user.uid);
-
+  
   try {
-      // Fetch the current user data
-      const userDoc = await getDoc(userRef);
-      const userData = userDoc.data();
-
-      // Update the all-time swipes
-      const oldAllTimeSwipes = userData["All Time Swipes"] || {};
-      const updatedAllTimeSwipes = {};
-
-      // Add the oldAllTime entries
-      for (const location in oldAllTimeSwipes) {
-          updatedAllTimeSwipes[location] = oldAllTimeSwipes[location];
-      }
-
-      // Add the swipes for the current week
-      const currentWeekSwipes = await fetchWeeklySwipesForLocations();
-      for (const location in currentWeekSwipes) {
-          updatedAllTimeSwipes[location] = (updatedAllTimeSwipes[location] || 0) + currentWeekSwipes[location];
-      }
-
-      // Update the document in Firestore
-      await setDoc(userRef, { "All Time Swipes": updatedAllTimeSwipes }, { merge: true });
-      console.log("All Time Swipes updated successfully");
+    await fetchWeeklySwipeSchedule(); // Wait for fetchWeeklySwipeSchedule() to complete
+    console.log("Updating All Time Swipes with data:", newCount);
+    await setDoc(userRef, { "All Time Swipes": newCount }, { merge: true });
+    console.log("All Time Swipes updated successfully");
   } catch (error) {
-      console.error("Error updating All Time Swipes: ", error);
+    console.error("Error updating All Time Swipes: ", error);
   }
 }
 
@@ -96,7 +77,6 @@ export async function updateWeeklySwipesForLocations(newCount) {
   try {
     await fetchWeeklySwipeSchedule(); // Wait for fetchWeeklySwipeSchedule() to complete
     await setDoc(userRef, { "Current Week's Location Swipes": newCount }, { merge: true });
-    await setDoc(userRef, { "All Time Swipes": newCount }, { merge: true });
     console.log("Weekly Swipes for Locations updated successfully");
   } catch (error) {
     console.error("Error updating Weekly Swipes for Locations: ", error);
