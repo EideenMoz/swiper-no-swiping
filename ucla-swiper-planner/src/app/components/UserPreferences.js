@@ -197,7 +197,7 @@ const SwipePlanner = () => {
 
       {/* onClick={handleSaveToFirestore} */}
       <h2 className={styles.podiumMessage}>
-        Your Lunch-Wrapped
+        Your Lunch-Wrapped UPDATED 
       </h2>
 
     </div>
