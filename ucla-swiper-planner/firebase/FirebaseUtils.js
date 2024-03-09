@@ -1,10 +1,11 @@
 import { db } from "./FirebaseApp";
-import { doc, setDoc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
-import { getAuth } from "firebase/auth";
-
+import { doc, setDoc, getDoc, collection, query, where, getDocs, getFirestore } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const auth = getAuth();
 const usersRef = collection(db, "Users");
+
+// Use onAuthStateChanged to handle authentication state changes
 
 export async function InitNewUser(){
   const user = auth.currentUser;
@@ -32,12 +33,23 @@ export async function InitNewUser(){
       Sun: 0,
   };
 
+  let Entries = {
+    Mon: [{name: "", period: ""}],
+    Tue: [{name: "", period: ""}],
+    Wed: [{name: "", period: ""}],
+    Thu: [{name: "", period: ""}],
+    Fri: [{name: "", period: ""}],
+    Sat: [{name: "", period: ""}],
+    Sun: [{name: "", period: ""}],
+};
+
   console.log("Dict:", dict);
   console.log("Weekly Swipe Schedule:", WeeklySwipeScheudle);
 
   updateAllTimeSwipes(dict);
   updateWeeklySwipesForLocations(dict);
   updateWeeklySwipeCount(WeeklySwipeScheudle);
+  updateWeekEntries(Entries);
 
   const userDocRef = doc(usersRef, user.uid); // specify the document reference
   try {
@@ -50,8 +62,8 @@ export async function InitNewUser(){
 }
 
 export async function fetchDataFromFirestore() {
-  const user = auth.currentUser;
-  setDoc(usersRef, { "uid": user.uid });
+  const user = await auth.currentUser;
+  setDoc(usersRef, { "uid": user.uid }); 
   const q = query(usersRef, where("uid", "==", user.uid)); // Construct query using query() and where()
   try {
       const querySnapshot = await getDocs(q);
@@ -140,6 +152,28 @@ export async function fetchDataFromFirestore() {
       throw error; // rethrow the error for handling at a higher level
     }
   }
+
+// ... (existing imports)
+
+export async function fetchWeekEntries() {
+  try {
+   const db = getFirestore();
+   const user = await auth.currentUser;
+   
+    const docRef = doc(db, 'Users', user.uid);
+    const docSnap = await getDoc(docRef);
+    console.log("FROM FETCH", docSnap.data());
+    return docSnap['week Entries'];
+
+
+  } catch (error) {
+    console.error('Error fetching week entries:', error);
+    throw error;
+  }
+}
+
+// ... (existing functions)
+
   
   // Similarly modify other functions fetchAllTimeSwipes and fetchWeeklySwipesForLocations
   
@@ -179,6 +213,18 @@ export async function fetchDataFromFirestore() {
       console.log("Weekly Swipes for Locations updated successfully");
     } catch (error) {
       console.error("Error updating Weekly Swipes for Locations: ", error);
+    }
+  }
+
+  export async function updateWeekEntries(entries) {
+    const user = auth.currentUser;
+    const userRef = doc(db, "Users", user.uid);
+    
+    try {
+      await setDoc(userRef, { "week Entries": entries }, { merge: true });
+      console.log("Week Entriesfor Locations updated successfully");
+    } catch (error) {
+      console.error("Error updating Week Entries for Locations: ", error);
     }
   }
   

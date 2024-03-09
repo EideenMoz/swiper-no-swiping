@@ -14,13 +14,19 @@ import styles from "../styles/Wheel.module.css";
 const Wheel= () => {
   
     const segments = [
-      "Bplate",
-      "De Neve",
-      "Epicuria",
-      "Food Truck",
-      "Take-out",
+      'De Neve',
+      'Bplate',
+      'Epicuria',
+      'Feast',
+      'The Study',
+      'Rende West',
+      'Rende East',
+      'BCafe',
+      'Campus',
+      'Food Truck',
     ];
-    const segColors = ["#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F"];
+    const segColors = ["#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F",
+    "#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F"];
     const onFinished = (winner) => {
       console.log(winner);
     };
