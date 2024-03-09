@@ -37,7 +37,7 @@ export async function fetchWeeklySwipesForLocations() {
   
 export async function fetchWeeklySwipeSchedule() {
   const userInfo = await fetchFireStoreData();
-  const swipes=userInfo[0]["Weekly Swipe Count"]
+  const swipes=userInfo[0]["week entries"]
   console.log(swipes);
   return userInfo;
 }

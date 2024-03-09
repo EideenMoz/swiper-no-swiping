@@ -1,11 +1,33 @@
-// Filename: src/app/components/Calendar.js
+"use client";
 
 // To inform Next.js that this is a client component
-'use client'
-import React, { useState } from 'react';
-import styles from '../styles/Calendar.module.css'
 
-import { updateWeeklySwipesForLocations, fetchWeeklySwipesForLocations } from '../../../firebase/FirebaseUtils';
+import React, { useState, useEffect } from 'react';
+import styles from '../styles/Calendar.module.css';
+
+import {
+  updateWeeklySwipesForLocations,
+  fetchWeeklySwipeSchedule,
+  
+} from '../../../firebase/FirebaseUtils';
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from 'firebase/auth';
+
+import {
+  collection,
+  doc,
+  getDoc
+} from 'firebase/firestore';
+
+import { db } from '../../../firebase/FirebaseApp';
+
+
+const auth = getAuth();
+const usersRef = collection(db, "Users");
+const user = auth.currentUser;
 
 
 
@@ -16,16 +38,46 @@ const Calendar = () => {
   
     const [tableData, setTableData] = useState(Array(7).fill([]).map(() => [{ ...defaultEntry }])); // Initialize as empty array
 
+    //function to convert map from firebase back into tableData format
+    const convertEntryMapToTableData = (entryMap) => {
+      
+      const table = daysOfWeek.map((day) => {
+        // Check if entryMap[day] exists before calling map
+        const entries = entryMap[day] ? entryMap[day].map((entry) => ({
+          name: entry.name + ' ',
+          period: entry.period,
+        })) : [];
+      
+        return entries;
+      });
+    
+      return table;
+    };
 
   
 const UpdateWeeklySwipes = async (e) =>{
   const result = createOptionMap(tableData);
-  updateWeeklySwipesForLocations(result);
-  const weeklySwipes=fetchWeeklySwipesForLocations();
-  console.log(weeklySwipes);
+  const entryMap = createEntryMap(tableData); //Just to test
+  updateWeeklySwipesForLocations(entryMap);
   }
 
+//Creates a map to change tableData into a map firebase can take
+  const createEntryMap = (tableData) => {
+    let dict = {
 
+    };
+    // Iterate through each day in tableData
+    for (let i = 0; i < tableData.length; i++) {
+      const dayOfWeek = daysOfWeek[i].toLowerCase(); // Get the corresponding day of the week
+      const entries = tableData[i].map((item) => ({ name: item.name, period: item.period }));
+  
+      // Add the entries to the dict based on the day of the week
+      dict[dayOfWeek] = entries;
+    }
+  
+    console.log(dict)
+    return dict;
+  };
 
 //Uses tableData to create a map of all the options
 //Need to update with all the options after
@@ -69,7 +121,10 @@ const UpdateWeeklySwipes = async (e) =>{
             if (entry.name == 'Rende East '){
               dict.rendeeast+=1;
             }
-            if (entry.name == 'Bcafe '){
+            if (entry.name == 'Feast '){
+              dict.feast+=1;
+            }
+            if (entry.name == 'BCafe '){
               dict.bcafe+=1;
             }
             if (entry.name == 'Campus '){
@@ -79,6 +134,7 @@ const UpdateWeeklySwipes = async (e) =>{
       }
       return dict;
     };
+
 
 
 //log table data
@@ -140,8 +196,21 @@ const UpdateWeeklySwipes = async (e) =>{
       { value: 'Campus ', label: 'Campus' },
       { value: 'Food Truck ', label: 'Food Truck' },
     ];
-    
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const weekEntries = await fetchWeeklySwipeSchedule();
+          const updatedTableData = convertEntryMapToTableData(weekEntries);
+          setTableData(updatedTableData);
+        } catch (error) {
+          console.error('Error fetching "week Entries":', error);
+        }
+      };
   
+      fetchData(); // Call the fetchData function on component mount
+    }, []); 
+
     return (
       <div className ={styles.Calendar} >
         {/* <h2>Month1 Day1 - Month2 Day2</h2> */}
@@ -198,13 +267,15 @@ const UpdateWeeklySwipes = async (e) =>{
             </tr>
           </tbody>
         </table>
-        <button className={styles.Button} onClick={logDataStructure}>
+        <div className ={styles.UpdateButton}> 
+          <button className={styles.UpdateButton} onClick={logDataStructure}>
         Send Update
       </button>
+      </div>
+       
         </div>
         
     );
   };
   
   export default Calendar;
-  
