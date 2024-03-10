@@ -1,27 +1,32 @@
 {
     "Breakfast": {
-        "Epicuria": [],
+        "Epicuria": [
+            "Closed"
+        ],
         "De Neve": [
+            "The Front Burner French Toast",
             "The Breakfast Hash Brown",
             "Pork Sausage",
             "Scrambled Eggs",
             "The Pizzeria Belgian Waffle"
         ],
         "Bruin Plate": [
-            "Bruin Scramble (ham & Cheddar)",
+            "Bruin Scramble W/ Flank Steak",
             "Bruin Scramble (vegetarian)",
             "Egg",
             " Mushroom & Kale On W.w. English Muffin",
             "Scrambled Eggs",
             "Vegan Scrambled Eggs",
-            "Four Grain Waffles W/ Oranges & Citrus Marmalade",
             "Tri-color Quinoa Pancake W/ Blueberries"
         ]
     },
     "Lunch": {
-        "Epicuria": [],
+        "Epicuria": [
+            "Closed"
+        ],
         "De Neve": [
             "Bar Honey Lime Chicken Thighs",
+            "The Front Burner French Toast",
             "The Hot Links",
             "Scrambled Eggs",
             "The Pizzeria Shrimp Scampi Pizza",
@@ -29,7 +34,7 @@
             "D.f.c."
         ],
         "Bruin Plate": [
-            "Bruin Scramble (ham & Cheddar)",
+            "Bruin Scramble W/ Flank Steak",
             "Bruin Scramble (vegetarian)",
             "Crispy Quinoa-coated Chicken Breast W/ Dandelion Greens",
             "Free-range Chicken Breast Encrusted In Red Quinoa Served With Dandelion Greens Dressed In Honey-lime Vinaigrette. Spinach",
@@ -46,7 +51,9 @@
         ]
     },
     "Dinner": {
-        "Epicuria": [],
+        "Epicuria": [
+            "Closed"
+        ],
         "De Neve": [
             "Bar Honey Lime Chicken Thighs",
             "The Front Burner Pancakes",

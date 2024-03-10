@@ -12,7 +12,6 @@ import {
   updateMealPlanType,
   fetchMealPlanType,
   updateRemainingBalance
-  
 } from '../../../firebase/FirebaseUtils';
 
 import {
@@ -34,7 +33,6 @@ const usersRef = collection(db, "Users");
 const user = auth.currentUser;
 
 const SwipePlanner = () => {
-  
   const [selectedOption, setSelectedOption] = useState("14p"); // Default selection
   const [swipeValues, setSwipeValues] = useState({
     Monday: 2,
@@ -60,7 +58,8 @@ const SwipePlanner = () => {
           console.log('tableData', swipeValues);
           const weekEntries = await fetchWeeklySwipeSchedule();
           const formattedData = weekEntries[0]["Weekly Swipe Count"]; // Assuming fetchWeeklySwipeSchedule needs the user's UID
-          const fetchedPlan = await fetchMealPlanType();
+          const fetchedPlan = weekEntries[0]["Meal Plan Type"];
+          console.log("fetched plane tpye fetchedPlan.type ");
           console.log(fetchedPlan);
           // Sort the swipe values by days of the week
           const sortedData = Object.keys(formattedData).sort((a, b) => {
@@ -72,8 +71,8 @@ const SwipePlanner = () => {
           }, {});
   
           setSwipeValues(sortedData);
-  
           setSelectedOption(fetchedPlan || "14p"); // Set selected option to fetchedPlan if it exists, otherwise default to "14p"
+
         } catch (error) {
           console.error('Error fetching "week Entries":', error);
         }
@@ -128,7 +127,6 @@ const SwipePlanner = () => {
     //updatefirestore(set)
   };
 
-  // Function to handle swipe value change for a day
 // Function to handle swipe value change for a day
 const handleSwipeChange = (day, direction) => {
   const newSwipeValues = { ...swipeValues };
@@ -167,9 +165,27 @@ const handleSwipeChange = (day, direction) => {
     updateRemainingBalance(currentSwipes);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      updateRemainingBalance(currentSwipes);
+      setCurrentSwipes("");
+    }
+  };
+  
+ 
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>WELCOME TO THE PROFILE PAGE</h1>
+
+      <div className={styles.explanationBox}>
+        <p className={styles.explanationText}>
+          This is the Profile Page where you will set the amount of swipes you would like to use each day.
+          We will use this information to display how many swipes you should have for the remaining week.
+          You can also update the current amount of swipes you have right now! This will give us an accurate
+          representation about how on track you actually are.
+        </p>
+      </div>
+
       <div className={styles.buttonGroup}>
         <button
           className={`${styles.button} ${selectedOption === "11p" && styles.selected}`}
@@ -189,22 +205,28 @@ const handleSwipeChange = (day, direction) => {
         >
           19p
         </button>
-
       </div>
 
       <div>
-        <form className={styles.formContainer}>
+        <form className={styles.formContainer} >
           <label className={styles.formLabelCont}>
             Update Current Swipes:
             <input
               type="number"
               value={currentSwipes}
-              onChange={handleCurrentSwipesChange}
+              onChange={handleCurrentSwipesChange} 
+              onKeyPress={handleKeyPress}
             />
           </label>
-            <a href="https://myhousing.hhs.ucla.edu/shib/swipes" target="_blank" rel="noopener noreferrer">Check Real-Time Swipes</a>
+          <div className={styles.updateSwipes}>
+            <div className={styles.p}>
+              <a href="https://myhousing.hhs.ucla.edu/shib/swipes" target="_blank" rel="noopener noreferrer">Check Real-Time Swipes</a>
+            </div>
+          </div>
         </form>
       </div>
+
+      <h4 className={styles.customP1}>Hit Enter To Save Swipes</h4>
 
       <table className={styles.table}>
         <thead>
@@ -240,7 +262,7 @@ const handleSwipeChange = (day, direction) => {
 
       {/* onClick={handleSaveToFirestore} */}
       <h2 className={styles.podiumMessage}>
-        Your Lunch-Wrapped UPDATED 
+        Your Lunch-Wrapped UPDATED
       </h2>
 
     </div>

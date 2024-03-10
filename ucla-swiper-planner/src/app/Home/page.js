@@ -29,6 +29,21 @@ const onTrack = (mockData.totalSwipesUsed / totalSwipesAvailable) <= (1 / mockDa
 
 export default function Home() {
     // Here, you'd replace mockData with actual data fetched from your database
+    const swipeTrackerProps = {
+        totalSwipesUsed: mockData.totalSwipesUsed,
+        weeklySwipesUsed: mockData.weeklySwipesUsed,
+        // Add any other props required by the SwipeTracker component
+    };
+
+    const balanceInfoProps = {
+        totalSwipesUsed: mockData.totalSwipesUsed,
+        totalSwipesAvailable: totalSwipesAvailable,
+        currentWeek: mockData.currentWeek,
+        currentDay: mockData.currentDay,
+        swipesPerWeek: mockData.swipesPerWeek,
+        onTrack: onTrack,
+        // Add any other props required by the BalanceInfo component
+    };
 
     return (
         <>
@@ -46,7 +61,15 @@ export default function Home() {
                         swipesPerWeek={mockData.swipesPerWeek} 
                         onTrack={onTrack} 
                     />
-                    <Menu />
+                    <Menu /> */
+                    <div className={styles.headerContainer}>  {/* Wrap title in new container */}
+                        <h1 className={styles.title}>Welcome to UCLA Swipe Planner!</h1>
+                    </div>
+                    <div className={styles.sideBySide}>  {/* Group swipe tracker and balance info */}
+                        <SwipeTracker {...swipeTrackerProps} />        
+                        <BalanceInfo {...balanceInfoProps} />
+                    </div>
+                    <Menu />  {/* Menu below the side-by-side containers */}
                 </main>
             </div>
         </>

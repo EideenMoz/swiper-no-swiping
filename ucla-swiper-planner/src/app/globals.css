@@ -71,7 +71,6 @@ p {
   line-height: 1.75; /* Improves readability by increasing line height */
   margin-bottom: 1.5rem; /* Adds spacing below paragraphs */
   max-width: 80ch; /* Controls the maximum width of text lines for readability */
-  text-align: justify; /* Justifies the text for a uniform appearance */
   padding: 2rem; /* Adds internal spacing for the paragraph */
   background-color: var(--light-gray); /* Light gray background for soft contrast */
   border-left: 5px solid var(--ucla-blue); /* Stylistic accent line using UCLA Blue */
