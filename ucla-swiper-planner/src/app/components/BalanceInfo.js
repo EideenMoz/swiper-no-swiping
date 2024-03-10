@@ -61,6 +61,13 @@ function BalanceInfo({ totalSwipesUsed, totalSwipesAvailable, currentWeek, curre
         totalSwipesAvailable=120;
       }
       console.log(totalSwipesAvailable);
+
+      if(remainingBalance>=totalSwipesAvailable - ((currentWeek * swipesPerWeek) - (currentDay * 3))){
+        onTrack=true;
+      }
+      else{
+        onTrack=false;
+      }
     return (
         <div className={styles.balanceInfo}>
             <h2>Meal Swipe Balance</h2>
