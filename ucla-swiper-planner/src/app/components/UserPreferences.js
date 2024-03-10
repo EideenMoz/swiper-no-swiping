@@ -91,7 +91,7 @@ const SwipePlanner = () => {
       setSwipeValues({
         Monday: 2,
         Tuesday: 2,
-        Wed: 2,
+        Wednesday: 2,
         Thursday: 2,
         Friday: 2,
         Saturday: 2,
