@@ -9,6 +9,9 @@ import styles from '../styles/Profile.module.css'; // Import your CSS file for s
 import {
   updateWeeklySwipeCount,
   fetchWeeklySwipeSchedule,
+  updateMealPlanType,
+  fetchMealPlanType,
+  updateRemainingBalance
   
 } from '../../../firebase/FirebaseUtils';
 
@@ -18,9 +21,7 @@ import {
 } from 'firebase/auth';
 
 import {
-  collection,
-  doc,
-  getDoc
+  collection
 } from 'firebase/firestore';
 
 import { db } from '../../../firebase/FirebaseApp';
@@ -51,15 +52,16 @@ const SwipePlanner = () => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser); // Update user state when auth state changes
     });
-
-    if (user) { // Only proceed if the user object exists
+  
+    if (user) {
       const fetchData = async () => {
         try {
           console.log(user);
           console.log('tableData', swipeValues);
           const weekEntries = await fetchWeeklySwipeSchedule();
           const formattedData = weekEntries[0]["Weekly Swipe Count"]; // Assuming fetchWeeklySwipeSchedule needs the user's UID
-          
+          const fetchedPlan = await fetchMealPlanType();
+          console.log(fetchedPlan);
           // Sort the swipe values by days of the week
           const sortedData = Object.keys(formattedData).sort((a, b) => {
             const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -68,20 +70,21 @@ const SwipePlanner = () => {
             obj[key] = formattedData[key];
             return obj;
           }, {});
-    
+  
           setSwipeValues(sortedData);
+  
+          setSelectedOption(fetchedPlan || "14p"); // Set selected option to fetchedPlan if it exists, otherwise default to "14p"
         } catch (error) {
           console.error('Error fetching "week Entries":', error);
         }
       };
-    
-      fetchData(); 
-      // Call the fetchData function if the user is authenticated
+  
+      fetchData();
     }
-    
-
+  
     return () => unsubscribe(); // Cleanup subscription
   }, [user]);
+  
   // Function to handle option change
   const handleOptionChange = (option) => {
     setSelectedOption(option);
@@ -121,6 +124,7 @@ const SwipePlanner = () => {
     }
 
     setMessage("You are using a valid amount of Swipes"); // Clear the message when changing the option
+    updateMealPlanType(option);
     //updatefirestore(set)
   };
 
@@ -160,6 +164,7 @@ const handleSwipeChange = (day, direction) => {
   const handleCurrentSwipesChange = (e) => {
     // Update the state when the input value changes
     setCurrentSwipes(e.target.value);
+    updateRemainingBalance(currentSwipes);
   };
 
   return (

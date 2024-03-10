@@ -14,6 +14,7 @@ import Navbar from '../components/navbar';
 // Mock data for demonstration
 // Replace Database fetching logic here 
 const mockData = {
+    totalSwipesAvailable: 180,
     totalSwipesUsed: 120,
     weeklySwipesUsed: 15,
     totalWeeks: 10,
@@ -36,10 +37,10 @@ export default function Home() {
             <div className={styles.container}>
                 <main className={styles.main}>
                     <h1 className={styles.title}>Welcome to UCLA Swipe Planner!</h1>
-                    <SwipeTracker totalSwipesUsed={mockData.totalSwipesUsed} weeklySwipesUsed={mockData.weeklySwipesUsed} />        
+                    <SwipeTracker totalSwipesAvailable={mockData.totalSwipesAvailable} weeklySwipesUsed={mockData.weeklySwipesUsed} />        
                     <BalanceInfo 
                         totalSwipesUsed={mockData.totalSwipesUsed} 
-                        totalSwipesAvailable={totalSwipesAvailable} 
+                        totalSwipesAvailable={mockData.totalSwipesAvailable} 
                         currentWeek={mockData.currentWeek} 
                         currentDay={mockData.currentDay} 
                         swipesPerWeek={mockData.swipesPerWeek} 
