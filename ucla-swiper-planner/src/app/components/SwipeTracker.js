@@ -24,6 +24,7 @@ function SwipeTracker({totalSwipesAvailable, weeklySwipesUsed }) {
     
     const [user, setUser] = useState(null);
     const [remainingBalance, setRemainingBalance] = useState(180);
+    const [mealPlanType, setMealPlanType] = useState("14p");
     
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -37,6 +38,7 @@ function SwipeTracker({totalSwipesAvailable, weeklySwipesUsed }) {
               const swipesLeft = await fetchRemainingBalance();
               console.log(swipesLeft[0]["Remaining Balance"]); 
               setRemainingBalance(swipesLeft[0]["Remaining Balance"]);
+              setMealPlanType(swipesLeft[0]["Meal Plan Type"])
             } catch (error) {
               console.error('Error fetching remaining balance:', error);
             }
@@ -46,22 +48,21 @@ function SwipeTracker({totalSwipesAvailable, weeklySwipesUsed }) {
       
         return () => unsubscribe(); // Cleanup subscription
       }, [user]);
-
-      // Convert remainingBalance to a number
-const remainingBalanceNumber = parseInt(remainingBalance);
-console.log("Remaining Bal:", remainingBalanceNumber);
-// Calculate the total swipes used as a number
-console.log("TOTAL VALAIUBLE:", totalSwipesAvailable);
-const totalSwipesUsed = totalSwipesAvailable - remainingBalanceNumber;
-console.log("TOAL USED:", totalSwipesUsed)
-
-// Ensure the totalSwipesUsed is not NaN, if it is, set it to 0
-const totalSwipesUsedDisplay = isNaN(totalSwipesUsed) ? 0 : totalSwipesUsed;
+      
+      if(mealPlanType==="19p"){
+        totalSwipesAvailable=205;
+      }
+      else if (mealPlanType==="14p"){
+        totalSwipesAvailable=150;
+      }
+      else{
+        totalSwipesAvailable=120;
+      }
 
     return (
         <div className={styles.swipeTracker}>
             <h2>Swipe Tracker</h2>
-            <p>Total Swipes Used: {totalSwipesUsedDisplay}</p>
+            <p>Total Swipes Used: {totalSwipesAvailable-remainingBalance}</p>
             <p>This Week's Swipes: {weeklySwipesUsed}</p>
         </div>
     );
