@@ -19,8 +19,13 @@ const Wheel= () => {
       "Epicuria",
       "Food Truck",
       "Take-out",
+      "Rende West",
+      "Rende East",
+      "BCafe",
+      "Campus",
+      "Feast"
     ];
-    const segColors = ["#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F"];
+    const segColors = ["#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F","#EE4040", "#F0CF50", "#815CD1", "#3DA5E0", "#34A24F"];
     const onFinished = (winner) => {
       console.log(winner);
     };
@@ -37,23 +42,24 @@ const Wheel= () => {
       <div>
 
         <div>
-          <h1>What Should I Eat?</h1>
-            <WheelComponent className={styles.Wheel}
-              segments={segments}
-              segColors={segColors}
-              onFinished={(winner) => onFinished(winner)}
-              primaryColor="black"
-              contrastColor="white"
-              buttonText="Spin"
-              isOnlyOnce={false}
-              size={250}
-              upDuration={75}
-              downDuration={400}
-              fontFamily="Arial"
-            />
-  
+          <h1 className={styles.PaddedText}>What Should I Eat?</h1>
+            <div className={styles.Wheel}>
+              <WheelComponent className={styles.Wheel}
+                segments={segments}
+                segColors={segColors}
+                onFinished={(winner) => onFinished(winner)}
+                primaryColor="black"
+                contrastColor="white"
+                buttonText="Spin"
+                isOnlyOnce={false}
+                size={250}
+                upDuration={75}
+                downDuration={400}
+                fontFamily="Arial"
+              />
+           </div>
         </div>
-      </div>
+      </div>  
     );
   };
   

@@ -19,6 +19,19 @@
     padding: 10px 15px; /* Top and bottom padding is 10 pixels, left and right padding is 15 pixels */
   } 
 
+  .UpdateButton {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+    padding: 10px 45px; 
+    /* Top and bottom padding is 10 pixels, left and right padding is 15 pixels */
+  } 
+
   .Padding{
     padding: 15px 15px;
+  }
+
+  .CenterText{
+    display:flex;
+    justify-content: center;
   }

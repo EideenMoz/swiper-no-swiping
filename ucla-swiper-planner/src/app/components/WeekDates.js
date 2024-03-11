@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-
+import styles from '../styles/Calendar.module.css';
 
 const WeekDatesDisplay = () => {
 
@@ -51,7 +51,7 @@ const WeekDatesDisplay = () => {
   });
 
   return (
-    <div>
+    <div className={styles.CenterText}>
       <h2>{startOfWeekFormatted} - {endOfWeekFormatted}</h2>
     </div>
   );

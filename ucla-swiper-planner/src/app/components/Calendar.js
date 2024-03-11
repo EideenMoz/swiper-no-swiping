@@ -55,9 +55,9 @@ const Calendar = () => {
           const formattedData = weekEntries[0]["Current Week's Location Swipes"]; // Assuming fetchWeeklySwipeSchedule needs the user's UID
           const updatedTableData = convertEntryMapToTableData(formattedData);
           
-          console.log('update data', updatedTableData);
-          console.log('formatted data', formattedData);
-          console.log('week data', weekEntries);
+          //console.log('update data', updatedTableData);
+          //console.log('formatted data', formattedData);
+          //console.log('week data', weekEntries);
           setTableData(updatedTableData);
           console.log('settingtabledata', tableData);
         } catch (error) {

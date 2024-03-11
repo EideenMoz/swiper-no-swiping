@@ -1,11 +1,18 @@
 /* styles/Wheel.module.css */
 
 .Wheel {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    justify-content: center;
     display: flex;
-    justify-content: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; 
     align-items: center;
+    text-align: right;
+    justify-content: center;
+    margin-left: 200px;
+
   }
   
+  .PaddedText{
+    display:flex;
+    justify-content: center;
+    padding-top: 20px;
+    margin-bottom: -40px;
+  }

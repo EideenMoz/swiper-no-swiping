@@ -58,7 +58,7 @@ var WheelComponent = function WheelComponent(_ref) {
 
     if (navigator.userAgent.indexOf('MSIE') !== -1) {
       canvas = document.createElement('canvas');
-      canvas.setAttribute('width', 1000);
+      canvas.setAttribute('width', 600);
       canvas.setAttribute('height', 600);
       canvas.setAttribute('id', 'canvas');
       document.getElementById('wheel').appendChild(canvas);
@@ -216,14 +216,14 @@ var WheelComponent = function WheelComponent(_ref) {
 
   var clear = function clear() {
     var ctx = canvasContext;
-    ctx.clearRect(0, 0, 1000, 800);
+    ctx.clearRect(0, 0, 800, 800);
   };
 
   return /*#__PURE__*/React.createElement("div", {
     id: "wheel"
   }, /*#__PURE__*/React.createElement("canvas", {
     id: "canvas",
-    width: "1000",
+    width: "800",
     height: "800",
     style: {
       pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto'

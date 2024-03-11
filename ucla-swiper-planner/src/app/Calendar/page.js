@@ -5,7 +5,7 @@
 // Components
 import Wheel from "../components/Wheel.js";
 import Calendar from "../components/Calendar.js";
-
+import styles from '../styles/Calendar.module.css';
 import Navbar from "../components/navbar.js";
 import SignOut from "../components/SignOutButton.js";
 
@@ -20,7 +20,7 @@ const CalendarPage = () => {
    <>
     <Navbar />
     <SignOut />
-    <h1>Welcome To The Calendar Page!</h1>
+    <h1 className={styles.CenterText}>Welcome To The Calendar Page!</h1>
     <WeekDatesDisplay></WeekDatesDisplay>
     <Calendar />
     <Wheel />
