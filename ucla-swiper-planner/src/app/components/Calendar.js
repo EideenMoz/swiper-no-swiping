@@ -50,6 +50,7 @@ const Calendar = () => {
     if (user) { // Only proceed if the user object exists
       const fetchData = async () => {
         try {
+          console.log(user);
           console.log('tableData', tableData);
           const weekEntries = await fetchWeeklySwipeSchedule();
           const formattedData = weekEntries[0]["Current Week's Location Swipes"]; // Assuming fetchWeeklySwipeSchedule needs the user's UID

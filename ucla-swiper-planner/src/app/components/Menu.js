@@ -1,46 +1,8 @@
 // components/Menu.js
+'use client'
 
-// Components 
-// import DailyMenu from './FetchDailyMenu';
-
-// For now, Important the meals statically before rendering 
-import meals from '../DailyMenu/menu_2024-03-05'
-// import { promises as fs } from 'fs';
-// import path from 'path'; // Import the path module
-
-// async function FetchMenu() {
-//     try {
-//         // Construct the full path in a platform-independent way
-//         const filePath = path.join(process.cwd(), '../Future-Menus/menu_2024-03-05.json');
-        
-//         // Read the file
-//         const fileContents = await fs.readFile(filePath, 'utf8');
-        
-//         // Parse the JSON content
-//         const menu = JSON.parse(fileContents);
-        
-//         // Log the menu object to the console
-//         console.log(menu);
-        
-//         // Optionally, return the menu object if you need to use it elsewhere
-//         return menu;
-//     } catch (error) {
-//         // If there's an error, log it to the console
-//         console.error('Error fetching the menu:', error);
-//         return null; // Return null or handle the error as appropriate
-//     }
-// }
-
-// // Call FetchMenu to test it
-// FetchMenu().then(menu => {
-//     if (menu) {
-//         // If you need to do something with the menu data after logging, you can do it here.
-//         // For example, this logs the fact that the menu has been successfully fetched.
-//         console.log('Menu fetched successfully.');
-//     }
-// });
-// Styles
-import styles from '../styles/Menu.module.css'; 
+import React, { useState, useEffect } from 'react';
+import styles from '../styles/Menu.module.css';
 
 // const meals = {
 //     Breakfast: {
@@ -66,10 +28,47 @@ import styles from '../styles/Menu.module.css';
 //     }
 // };
 
-// const meals = FetchMenu();
-// console.log(meals)
+
+
 
 export default function Menu(){
+    const [meals, setMeals] = useState(null);
+    
+    useEffect(() => {
+        // Function to format the date to match the file naming convention
+        const formatDate = (date) => {
+            let month = '' + (date.getMonth() + 1),
+                day = '' + date.getDate(),
+                year = date.getFullYear();
+            
+            if (month.length < 2) 
+                month = '0' + month;
+            if (day.length < 2) 
+                day = '0' + day;
+            
+            return [year, month, day].join('-');
+        };
+
+        // Dynamically import the menu based on today's date
+        const fetchMenu = async () => {
+            const today = new Date();
+            const formattedDate = formatDate(today);
+            try {
+                const menu = await import(`../DailyMenu/menu_${formattedDate}.json`);
+                setMeals(menu.default);
+            } catch (error) {
+                console.error('Error fetching the menu:', error);
+                // Handle the case where the file does not exist for today's date
+                // e.g., setMeals to a default value or manage the error state
+            }
+        };
+
+        fetchMenu();
+    }, []);
+
+    // Early return if meals is null or loading
+    if (!meals) return <div>Loading...</div>;
+
     return (
         <div className={styles.menu}>
             <h2 className={styles.menuTitle}>Checkout Today's Dining Hall Options</h2>

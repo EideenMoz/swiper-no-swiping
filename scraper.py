@@ -94,17 +94,24 @@ def write_menu_to_json(menu_data, date):
         "Lunch": {},
         "Dinner": {}
     }
-    
-    for hall_name, menu in menu_data.items():
-        formatted_menus["Breakfast"][hall_name] = menu["Breakfast"]
-        formatted_menus["Lunch"][hall_name] = menu["Lunch"]
-        formatted_menus["Dinner"][hall_name] = menu["Dinner"]
+
+    halls_to_check = ["Epicuria", "De Neve", "Bruin Plate"]
+
+    # Loop through each meal period
+    for meal_period in formatted_menus.keys():
+        # Loop through each hall
+        for hall_name, menu in menu_data.items():
+            # If the hall is in the halls to check and it's empty for the current meal period, mark it as "Closed"
+            if hall_name in halls_to_check and not menu[meal_period]:
+                formatted_menus[meal_period][hall_name] = ["Closed"]
+            else:
+                formatted_menus[meal_period][hall_name] = menu[meal_period]
 
     # Format the date for the filename
     formatted_date = date.strftime("%Y-%m-%d")
 
     # Create the directory if it doesn't exist
-    directory = "Future-Menus"
+    directory = "./ucla-swiper-planner/src/app/DailyMenu"
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -112,6 +119,7 @@ def write_menu_to_json(menu_data, date):
     filename = os.path.join(directory, f"menu_{formatted_date}.json")
     with open(filename, 'w') as json_file:
         json.dump(formatted_menus, json_file, indent=4)
+
 
 # Loop through the next 7 days
 for i in range(7):

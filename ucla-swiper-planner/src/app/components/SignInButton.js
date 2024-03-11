@@ -5,7 +5,7 @@ import app from '../../../firebase/FirebaseApp'; // Adjust the path as needed
 import {getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth"
 import {useAuthState} from "react-firebase-hooks/auth"
 import {useRouter} from "next/navigation"
-
+import { initNewUser } from "../../../firebase/FirebaseUtils";
 
 
 function SignIn() {
@@ -30,13 +30,10 @@ function SignIn() {
         return <div>Currently Loading D:</div>;
     }
 
-    // if (!user){
-    //     router.push("/")
-    //     return <div>Currently Loading D:</div>;
-    // }  
 
     if (user) {
         router.push("/Home")
+        initNewUser(auth); //doesnt do anything to existing users
     }
 
     return (

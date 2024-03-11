@@ -6,22 +6,17 @@
 .main {
     min-height: 100vh;
     padding: 4rem 0;
-    display: flex;  /* Enable flex for row layout */
-    flex-direction: column;  /* Stack components vertically */
-    justify-content: center;  /* Center content vertically */
-    align-items: center;  /* Center content horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.header-container {
-    text-align: center;  /* Center the title text */
-  }
-
-
 .title {
+    margin: 0;
     line-height: 1.15;
     font-size: 4rem;
-    margin-bottom: var(--spacing-medium);
-    margin-top: 0;
+    padding-top: 20px;
 }
 
 .swipeTracker, .balanceInfo {
@@ -40,14 +35,6 @@
     color: #0070f3;
     border-color: #0070f3;
 }
-
-.sideBySide {
-    display: grid;
-    grid-template-columns: 1fr 1fr;  /* Define two grid columns */
-    grid-gap: 1rem;  /* Add spacing between grid items */
-    margin: 0 auto;  /* Center container horizontally on the page */
-    width: fit-content;  /* Adjust container width to fit content */
-  }
 
 /* Example media query in ui/Home.module.css */
 @media (max-width: 768px) {

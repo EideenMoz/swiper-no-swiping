@@ -1,6 +1,6 @@
-import { db } from "./FirebaseApp";
-import app from "./FirebaseApp"
 import { doc, setDoc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import app from "./FirebaseApp"
+import { db } from './FirebaseApp';
 import { getAuth } from "firebase/auth";
 
 
@@ -22,6 +22,12 @@ export async function fetchFireStoreData(){
   return userData;
 }
 
+export async function fetchRemainingBalance(){
+  const userInfo = await fetchFireStoreData();
+  const swipes=userInfo[0]["Remaning Balance"]
+  console.log(swipes);
+  return userInfo;
+}
 export async function fetchAllTimeSwipes() {
   const userInfo = await fetchFireStoreData();
   const swipes=userInfo[0]["All Time Swipes"]
@@ -42,6 +48,13 @@ export async function fetchWeeklySwipeSchedule() {
   return userInfo;
 }
 
+export async function fetchMealPlanType() {
+  const userInfo = await fetchFireStoreData();
+  const swipes=userInfo[0]["Meal Plan Type"]
+  console.log(swipes);
+  return userInfo;
+}
+
  
   
 export async function updateWeeklySwipeCount(newCount) {
@@ -49,14 +62,50 @@ export async function updateWeeklySwipeCount(newCount) {
   const userRef = doc(db, "Users", user.uid);
   
   try {
-    await fetchWeeklySwipeSchedule(); // Wait for fetchWeeklySwipeSchedule() to complete
     await setDoc(userRef, { "Weekly Swipe Count": newCount }, { merge: true });
     console.log("Weekly Swipe Count updated successfully");
   } catch (error) {
     console.error("Error updating Weekly Swipe Count: ", error);
   }
 }
+
+export async function updateRemainingBalance(newCount) {
+  const user = auth.currentUser;
+  const userRef = doc(db, "Users", user.uid);
   
+  try {
+    await setDoc(userRef, { "Remaining Balance": newCount }, { merge: true });
+    console.log("Remaining Balance updated successfully");
+  } catch (error) {
+    console.error("Error updating Remaining Balance: ", error);
+  }
+}
+
+
+export async function updateMealPlanType(newCount) {
+  const user = auth.currentUser;
+  const userRef = doc(db, "Users", user.uid);
+  
+  try {
+    await setDoc(userRef, { "Meal Plan Type": newCount }, { merge: true });
+    console.log("Updated Meal Plan Type");
+  } catch (error) {
+    console.error("Error updating Meal Plan Type: ", error);
+  }
+}
+
+export async function initNewUser(newLogIn){
+  const user = newLogIn.currentUser;
+  const userRef = doc(db, "Users", user.uid);
+
+  try{
+    await setDoc(userRef, { "uid": user.uid }, { merge: true });
+    console.log("Initalized a new user");
+  }catch(error){
+    console.error("Initalizing a new user: ", error);
+  }
+}
+
 export async function updateAllTimeSwipes(newCount) {
   const user = auth.currentUser;
   const userRef = doc(db, "Users", user.uid);

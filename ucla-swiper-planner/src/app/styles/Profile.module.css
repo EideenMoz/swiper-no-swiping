@@ -11,23 +11,20 @@
   /* Add a subtle 3D text shadow */
 }
 
-.formLabelCont{
+.formLabelCont {
   margin-right: 5px;
 }
 
-.updateSwipes{
+.updateSwipes {
   padding-top: 5px;
   font-size: small;
 }
 
-.updateSwipes p {
- color: green;
-}
 
 .formContainer {
   display: flex;
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   /* Add margin to separate the form from buttons */
 }
 
@@ -42,7 +39,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  
+
 }
 
 .button {
@@ -64,7 +61,7 @@
   /* Light green color */
   color: #000;
   margin-top: 5px;
-  
+
   /* Black text color, adjust as needed */
 }
 
@@ -155,7 +152,7 @@
   /* justify-content: space-around; */
   margin-right: 10px;
   justify-content: center;
-  
+
 }
 
 /* Adjust podium block styles for gold, silver, and bronze */
@@ -174,6 +171,7 @@
   order: 2;
 }
 
+
 .podiumBlock2 {
   height: 130px;
   background-color: silver;
@@ -186,4 +184,34 @@
   background-color: #cd7f32;
   /* Change the color to bronze for the third place */
   order: 3;
+}
+
+.customP {
+  /* Reset to default styles of p tag */
+  color: black;
+  font-weight: 80;
+}
+
+.customP1 {
+  /* Reset to default styles of p tag */
+  color: black;
+  font-weight: 80;
+  margin-bottom: 40px;
+}
+
+.explanationBox {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+.explanationText{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }

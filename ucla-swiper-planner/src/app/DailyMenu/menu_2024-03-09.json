@@ -1,0 +1,76 @@
+{
+    "Breakfast": {
+        "Epicuria": [
+            "Closed"
+        ],
+        "De Neve": [
+            "The Breakfast Hash Brown",
+            "Pork Sausage",
+            "Scrambled Eggs",
+            "The Pizzeria Belgian Waffle"
+        ],
+        "Bruin Plate": [
+            "Bruin Scramble W/ Chicken",
+            "Bruin Scramble (vegetarian)",
+            "Egg",
+            " Mushroom & Kale On W.w. English Muffin",
+            "Scrambled Eggs",
+            "Vegan Scrambled Eggs",
+            "Four Grain Waffles",
+            "Tri-color Quinoa Pancake W/ Blueberries"
+        ]
+    },
+    "Lunch": {
+        "Epicuria": [
+            "Closed"
+        ],
+        "De Neve": [
+            "The Breakfast Hash Brown",
+            "Hot Links",
+            "Scrambled Eggs",
+            "The Pizzeria Shrimp Scampi Pizza",
+            "The Breakfast Slam Burger",
+            "D.f.c."
+        ],
+        "Bruin Plate": [
+            "Bruin Scramble W/ Chicken",
+            "Bruin Scramble (vegetarian)",
+            "Crispy Quinoa-coated Chicken Breast W/ Dandelion Greens",
+            "Free-range Chicken Breast Encrusted In Red Quinoa Served With Dandelion Greens Dressed In Honey-lime Vinaigrette. Spinach",
+            " Arugula",
+            " & White Bean Guacamole Wrap",
+            "Brisket",
+            " Caramelized Onion",
+            " & Salsify Pizza",
+            "High Carbon Footprint",
+            "Roasted Beet",
+            " Caramelized Onion & Blue Cheese Pizza",
+            "Sage Marinated Chicken Thigh",
+            "Falafel Stacker"
+        ]
+    },
+    "Dinner": {
+        "Epicuria": [
+            "Closed"
+        ],
+        "De Neve": [
+            "Bar Honey Lime Chicken Thighs",
+            "Pescado A La Veracruzana",
+            "The Front Burner Pancakes",
+            "The Chipotle Chilaquiles",
+            "The Pizzeria Shrimp Scampi Pizza",
+            "The Breakfast Slam Burger",
+            "D.f.c."
+        ],
+        "Bruin Plate": [
+            "Mahi Mahi W/ Pickled Vegetables",
+            "Honey-glazed Tempeh",
+            " Tri Color Quinoa & Collard Greens",
+            "Roasted South Carolina Style Mustard Bbq Chicken",
+            "Wheat Berry",
+            " Apricot & Arugula Salad",
+            "Santa Maria Pork Tenderloin",
+            "Mojo-marinated Tofu"
+        ]
+    }
+}
