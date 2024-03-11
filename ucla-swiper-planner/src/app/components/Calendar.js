@@ -8,6 +8,10 @@ import styles from '../styles/Calendar.module.css';
 import {
   updateWeeklySwipesForLocations,
   fetchWeeklySwipeSchedule,
+  updateRemainingBalance,
+  fetchAllTimeSwipes,
+  updateAllTimeSwipes,
+  fetchMealPlanType
   
 } from '../../../firebase/FirebaseUtils';
 
@@ -55,6 +59,7 @@ const Calendar = () => {
           const weekEntries = await fetchWeeklySwipeSchedule();
           const formattedData = weekEntries[0]["Current Week's Location Swipes"]; // Assuming fetchWeeklySwipeSchedule needs the user's UID
           const updatedTableData = convertEntryMapToTableData(formattedData);
+          const allTime = fetchAllTimeSwipes();
           
           //console.log('update data', updatedTableData);
           //console.log('formatted data', formattedData);
@@ -99,10 +104,32 @@ const Calendar = () => {
 
   
 const UpdateWeeklySwipes = async (e) =>{
-  const result = createOptionMap(tableData);
-  const entryMap = createEntryMap(tableData); 
+  const count = countSwipes(tableData);
+  const entryMap = createEntryMap(tableData);
+  const optionMap = createOptionMap(tableData);
+  console.log('count sent ', count);
+  console.log('option sent ', optionMap);
   console.log('sent map', entryMap)//Just to test
+  const plan = await fetchMealPlanType();
+  const planType = plan[0]['Meal Plan Type'];
+  console.log('plan', planType);
+  let totalSwipes =0;
+  if (planType == "14p"){
+    totalSwipes = 154;
+  }
+  if (planType == "19p"){
+    totalSwipes = 205;
+  }
+  if (planType == "11p"){
+    totalSwipes = 120;
+  }
+
+console.log('total swipes', totalSwipes);
+console.log('count sent ', count);
+  const newRemainingBalance = totalSwipes - count;
+  console.log('new remaining balance', newRemainingBalance);
   updateWeeklySwipesForLocations(entryMap);
+  updateRemainingBalance(newRemainingBalance);
   console.log('DATATABLE', tableData);
   }
 
@@ -127,60 +154,104 @@ const createEntryMap = (tableData) => {
 
 //Uses tableData to create a map of all the options
 //Need to update with all the options after
-    const createOptionMap = (tableData) => {  
-      let dict = {
-        deneve: 0,
-        bplate: 0,
-        epicuria: 0,
-        thestudy: 0,
-        rendewest: 0,
-        rendeeast: 0,
-        feast: 0,
-        bcafe:0,
-        campus: 0,
-        foodtruck: 0
-      };
+const createOptionMap = (tableData) => {  
+  let dict = {
+    deneve: 0,
+    bplate: 0,
+    epicuria: 0,
+    thestudy: 0,
+    rendewest: 0,
+    rendeeast: 0,
+    feast: 0,
+    bcafe:0,
+    campus: 0,
+    foodtruck: 0
+  };
+
+  for (const day of tableData){
+      for (const entry of day){
+        if (entry.name == "De Neve "){
+          dict.deneve+=1;
+        }
+        if (entry.name == 'Bplate '){
+          dict.bplate+=1;
+        }
+        if (entry.name == "Epicuria "){
+          dict.epicuria+=1;
+        }
+        if (entry.name == "Take-out "){
+          dict.takeout+=1;
+        }
+        if (entry.name == 'Food Truck '){
+          dict.foodtruck+=1;
+        }
+        if (entry.name == 'The Study '){
+          dict.thestudy+=1;
+        }
+        if (entry.name == 'Rende West '){
+          dict.rendewest+=1;
+        }
+        if (entry.name == 'Rende East '){
+          dict.rendeeast+=1;
+        }
+        if (entry.name == 'Feast '){
+          dict.feast+=1;
+        }
+        if (entry.name == 'BCafe '){
+          dict.bcafe+=1;
+        }
+        if (entry.name == 'Campus '){
+          dict.campus+=1;
+        }
+      }
+  }
+  return dict;
+};
+
+
+
+    const countSwipes = (tableData) => {  
+      let count = 0;
 
       for (const day of tableData){
           for (const entry of day){
             if (entry.name == "De Neve "){
-              dict.deneve+=1;
+              count+=1;
             }
             if (entry.name == 'Bplate '){
-              dict.bplate+=1;
+              count+=1;
             }
             if (entry.name == "Epicuria "){
-              dict.epicuria+=1;
+              count+=1;
             }
             if (entry.name == "Take-out "){
-              dict.takeout+=1;
+              count+=1;
             }
             if (entry.name == 'Food Truck '){
-              dict.foodtruck+=1;
+              count+=1;
             }
             if (entry.name == 'The Study '){
-              dict.thestudy+=1;
+              count+=1;
             }
             if (entry.name == 'Rende West '){
-              dict.rendewest+=1;
+              count+=1;
             }
             if (entry.name == 'Rende East '){
-              dict.rendeeast+=1;
+              count+=1;
             }
             if (entry.name == 'Feast '){
-              dict.feast+=1;
+              count+=1;
             }
             if (entry.name == 'BCafe '){
-              dict.bcafe+=1;
+              count+=1;
             }
             if (entry.name == 'Campus '){
-              dict.campus+=1;
+              count+=1;
             }
           }
       }
-      return dict;
+      return count;
     };
-
 
 
 //log table data

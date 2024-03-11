@@ -104,7 +104,7 @@ function SwipeTracker({ totalSwipesAvailable, weeklySwipesUsed }) {
                         console.log("swipesUsedThisWeek - intendedSwipes", swipesUsedThisWeek, '-', intendedSwipes)
                     } else if (intendedSwipes > swipesUsedThisWeek) {
                         setSwipeMessage(`You have used ${intendedSwipes - swipesUsedThisWeek} fewer swipes than intended in your profile.`);
-                        console.log("intendedSwipes- swipesUsedThisWeek", intendedSwipes, '-', weekly)
+                        //console.log("intendedSwipes- swipesUsedThisWeek", intendedSwipes, '-', weekly)
                     } else {
                         setSwipeMessage("YOU ARE USING THE CORRECT AMOUNT OF SWIPES LETS GOOOO!!!!");
                     }
