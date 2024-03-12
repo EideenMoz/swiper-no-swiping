@@ -183,19 +183,19 @@ const SwipePlanner = () => {
     }
   };
 
-  
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>WELCOME TO THE PROFILE PAGE</h1>
+
+      <h1 className={styles.CenterText}>Welcome To the Profile Page!</h1>
 
       <div className={styles.explanationBox}>
-        <p className={styles.explanationText}>
+        <styles.p1 className={styles.explanationText}>
           This is the Profile Page where you will set the amount of swipes you would like to use each day.
           We will use this information to display how many swipes you should have for the remaining week.
           You can also update the current amount of swipes you have right now! This will give us an accurate
           representation about how on track you actually are. Below that features your Lunch-Wrapped! 
           Discover your top 3 visited dining halls or takeout favorites, a review of your culinary adventures.
-        </p>
+        </styles.p1>
       </div>
 
       <div className={styles.buttonGroup}>
@@ -273,6 +273,7 @@ const SwipePlanner = () => {
       </h2>
     </div>
   );
-};
+
+  };
 
 export default SwipePlanner;
